@@ -1,10 +1,12 @@
 "use strict";
+var addPlayerPoint;
+var fail;
 var playera;
 var playerb;
 var playerAscore;
 var playerBscore;
-var showPlayerA
-var addPlayerPoint
+var showPlayerA;
+
 function initScore(){
 	var baseScore;
 	baseScore = 1;
@@ -31,6 +33,8 @@ function moveBack(){
 }
 addPlayerPoint = addPoint();
 console.log("add", addPlayerPoint);
+fail = moveBack();
+console.log("move back", fail);
 playera = initScore();
 console.log("Player 1 Space:", playera);
 playerb = initScore();
