@@ -28,7 +28,7 @@ function playerProgress(){
 }
 function moveBack(){
 	var negMove;
-    negMove = -2;
+    negMove = -1;
     return negMove;
 }
 addPlayerPoint = addPoint();
