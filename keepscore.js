@@ -1,6 +1,7 @@
 "use strict";
 function startScore(){
  	var baseScore = 1;
+ 	retun baseScore
  	console.log(baseScore);
  }
  function addOnePoint(number1, number2){
@@ -20,3 +21,12 @@ function startScore(){
  	return subtractTwo;
 
  }
+funtion keepScore(){
+	var baseScore
+	var addOnePoint
+	var subtractOnePoint
+	var addTwoPoints
+	var currentScore
+	baseScore = 0
+	 n 
+}
