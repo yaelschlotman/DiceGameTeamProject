@@ -5,21 +5,36 @@ function getUserInput(Message){
 	return userData;
 }
 
+function populatePlayersArray(numberOfPlayers,players){
+    var playerName;
+    while (numberOfPlayers !== players.length){
+	    playerName = getUserInput("Enter Name.");
+	    players.push(playerName);
+	}
+	return players;
+}
+
+
 function rollDice(){
-    return Math.floor((Math.random() * 20) + 1);
+	var diceOutcome;
+	diceOutcome = Math.floor((Math.random() * 20) + 1);
+    return diceOutcome;
 }
 
 function playerRoll(boardLevels, currentScore, currentPlayer){
-    var playerRoll =  rollDice();
-    //alert(playerRoll + " is the player roll");
-    var obstacleName = getObstacleName(boardLevels[currentScore]);
-    var obstacleLimit = getObstacleLimit(obstacleName);
+    var playerRoll;
+    var obstacleName;
+    var obstacleLimit;
     var currentScore;
 
-    alert("Player " + currentPlayer + ", you need to roll over a " +obstacleLimit + " to get past the " +obstacleName);
-    console.log("Player " + currentPlayer + ", you need to roll over a " +obstacleLimit + " to get past the " +obstacleName);
-    alert("Player " + currentPlayer + ", you rolled a " + playerRoll + " and you needed a " + obstacleLimit);
-    console.log("Player " + currentPlayer + ", you rolled a " + playerRoll + " and you needed a " + obstacleLimit);
+    playerRoll = rollDice();
+    obstacleName = getObstacleName(boardLevels[currentScore]);
+    obstacleLimit = getObstacleLimit(obstacleName);
+
+    alert(currentPlayer + ", you have encountered a " + obstacleName + ", and you will need to roll a " + obstacleLimit + " to get past it."  + " Click \"OK\" to roll.");
+    console.log(currentPlayer + ", you have encountered a " + obstacleName + ", and you will need to roll a " + obstacleLimit + " to get past it."  + " Click \"OK\" to roll.");
+    alert(currentPlayer + ", you rolled a " + playerRoll + " and you needed a " + obstacleLimit + ".");
+    console.log(currentPlayer + ", you rolled a " + playerRoll + " and you needed a " + obstacleLimit);
 
 
     if(playerRoll === 20){
@@ -35,16 +50,16 @@ function playerRoll(boardLevels, currentScore, currentPlayer){
         return currentScore;
     }
 
-    if(playerRoll > obstacleLimit){
+    if(playerRoll >= obstacleLimit){
         currentScore = currentScore + 1;
-        alert(currentPlayer + ", you moved forward! Your current level is " + currentScore);
-        console.log (currentPlayer + ", you moved forward! Your current level is " + currentScore);
+        alert(currentPlayer + ", you moved forward! Your current level is " + currentScore + ".");
+        console.log (currentPlayer + ", you moved forward! Your current level is " + currentScore + ".");
         return currentScore;
 
     }
     else{
-        alert(currentPlayer + ", you failed to move forward! Your current level is " + currentScore);
-        console.log (currentPlayer + ", you failed to move forward! Your current level is " + currentScore);
+        alert(currentPlayer + ", you failed to move forward! Your current level is " + currentScore + ".");
+        console.log (currentPlayer + ", you failed to move forward! Your current level is " + currentScore + ".");
         return currentScore;
     }
 }
@@ -79,7 +94,7 @@ function getObstacleLimit(obstacle){
     }
 }
 
-function endGame(player1Score, player2Score,numberOfLevels){
+function endGame(player1Score, player2Score,numberOfLevels,players){
     if (player1Score >= numberOfLevels && player2Score >= numberOfLevels){
     	alert("The game has ended in a tie!");
     	console.log ("The game has ended in a tie!");
@@ -87,13 +102,13 @@ function endGame(player1Score, player2Score,numberOfLevels){
     }
 
     else if (player1Score >= numberOfLevels){
-        alert("Player 1 won the game");
-        console.log ("Player 1 won the game");
+        alert(players[0] + " won the game!");
+        console.log (players[0] + " won the game");
         return true;
     }
     else if(player2Score >= numberOfLevels){
-        alert("Player 2 won the game");
-        console.log("Player 2 won the game");
+        alert(players[1] + " won the game!");
+        console.log(players[1] + " won the game!");
         return true;
     }
     else{
@@ -107,26 +122,31 @@ function main(){
     var numberOfLevels;
     var obstacle;
     var currentPlayer;
+    var players = [];
+    var numberOfPlayers;
+
+    numberOfPlayers = 2;
+   
+    players = populatePlayersArray(numberOfPlayers,players)
+
 
     player1Score = 0;
     player2Score = 0;
     numberOfLevels = getUserInput("How many levels do you want to play?");
-
+    
     for(obstacle = 0; obstacle < numberOfLevels; obstacle++){
         boardLevels[obstacle] = Math.floor((Math.random() * 20) + 1);
     }
 
-    while(!endGame(player1Score, player2Score,numberOfLevels)){
+    while(!endGame(player1Score, player2Score,numberOfLevels,players)){
 
-        currentPlayer = 1;
+        currentPlayer = players[0];
 
         player1Score = playerRoll(boardLevels, player1Score, currentPlayer);
 
-        currentPlayer = 2;
+        currentPlayer = players[1];
 
         player2Score = playerRoll(boardLevels, player2Score, currentPlayer);
     }
-    alert("The game has ended");
-    console.log("The game has ended");
 }
 main();
