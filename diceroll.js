@@ -125,11 +125,15 @@ function main(){
    
     playerNames = populatePlayersArray(numberOfPlayers,playerNames);
 
-
     player1Score = 0;
     player2Score = 0;
     numberOfLevels = getUserInput("How many levels do you want to play?");
-    
+
+    while (isNaN(numberOfLevels)){
+        alert("User input error");
+        numberOfLevels = getUserInput("How many levels do you want to play");
+    }
+        
     for(obstacle = 0; obstacle < numberOfLevels; obstacle++){
         boardLevels[obstacle] = Math.floor((Math.random() * 20) + 1);
     }
