@@ -5,14 +5,12 @@
 <link rel="stylesheet" type="text/css" href="mysitestyles.css">
 
 </head>
-	<body id="background" background="trees.jpg" link rel="stylesheet" type="text/css" href="mysitestyles.css">
-<!--<script src="blahblah.js"></script>-->
+<body id="background" link rel="stylesheet" type="text/css" href="mysitestyles.css">
 <div><center><h1><font size="36" color="black">Welcome to 'Walking Simulator 2016'</font></h1></center></div>
 <div><center><h1><font size="30" color="black">Experience the Intensity of Walking!</font></h1></center></div>
 
-
 <div><center><h1><font color="black">Game description</font></h1></center></div>
-<div><center><h3><font color="black">You are a regular old human, and you need to find a way to walk, that's right! One foot in front of the other, how hard could all of that be? That's correct, it's very hard.You have to overcome obstacles to get to the end of the board, to overcome you need to meet certain requirments for dice rolls.
+<div><center><h3><font color="black">You are a regular old human, and you need to find a way to walk, that's right! One foot in front of the other, how hard could all of that be? That's correct, it's very hard. You have to overcome obstacles to get to the end of the board, to overcome you need to meet certain requirements for dice rolls.
 
 So Keep Calm and Walk On!</font></h3></center></div>
 <div><center><h1><font color="black">Game Rules</font></h1></center></div>
@@ -21,7 +19,7 @@ So Keep Calm and Walk On!</font></h3></center></div>
 		<table border="1" style="width:20%">
 		<tr>
 			<td><font color="black"><b>Obstacles:<b/></font></td>
-			<td><font color="black"><b>Roll Must be higher than:</b></font></td>
+			<td><font color="black"><b>Roll must be at least:</b></font></td>
 			
 		</tr>
 		<tr>
@@ -46,14 +44,16 @@ So Keep Calm and Walk On!</font></h3></center></div>
 		</tr>
 		<tr>
 			<td><font color="black"><b>Win Condition<b/></font></td>
-			<td><font color="black"><b>Pass the final square!</b></font></td>
+			<td><font color="black"><b>Be first to overcome final obstacle!</b></font></td>
 			
 		</tr>
 		
 		</table>
 		</center>
 	</div>
-	<center><button type="button">Click To Roll</button></center>
+	<center><button type="button" onclick="main()">Start Game</button></center>
+	<script src="diceroll.js"></script>
 	</body>
+
 	
 </html>

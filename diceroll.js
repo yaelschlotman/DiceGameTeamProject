@@ -8,12 +8,11 @@ function getUserInput(Message){
 function populatePlayersArray(numberOfPlayers,players){
     var playerName;
     while (numberOfPlayers !== players.length){
-	    playerName = getUserInput("Enter Name.");
+	    playerName = getUserInput("Enter name:");
 	    players.push(playerName);
 	}
 	return players;
 }
-
 
 function rollDice(){
 	var diceOutcome;
@@ -23,19 +22,18 @@ function rollDice(){
 
 function playerRoll(boardLevels, currentScore, currentPlayer){
     var playerRoll;
-    var obstacleName;
-    var obstacleLimit;
+    var currentObstacle;
+    var obstacleThreshold;
     var currentScore;
 
     playerRoll = rollDice();
-    obstacleName = getObstacleName(boardLevels[currentScore]);
-    obstacleLimit = getObstacleLimit(obstacleName);
+    currentObstacle = getCurrentObstacle(boardLevels[currentScore]);
+    obstacleThreshold = getObstacleThreshold(currentObstacle);
 
-    alert(currentPlayer + ", you have encountered a " + obstacleName + ", and you will need to roll a " + obstacleLimit + " to get past it."  + " Click \"OK\" to roll.");
-    console.log(currentPlayer + ", you have encountered a " + obstacleName + ", and you will need to roll a " + obstacleLimit + " to get past it."  + " Click \"OK\" to roll.");
-    alert(currentPlayer + ", you rolled a " + playerRoll + " and you needed a " + obstacleLimit + ".");
-    console.log(currentPlayer + ", you rolled a " + playerRoll + " and you needed a " + obstacleLimit);
-
+    alert(currentPlayer + ", you have encountered a " + currentObstacle + ", and you will need to roll a " + obstacleThreshold + " to get past it."  + " Click \"OK\" to roll.");
+    console.log(currentPlayer + ", you have encountered a " + currentObstacle + ", and you will need to roll a " + obstacleThreshold + " to get past it."  + " Click \"OK\" to roll.");
+    alert(currentPlayer + ", you rolled a " + playerRoll + " and you needed a " + obstacleThreshold + ".");
+    console.log(currentPlayer + ", you rolled a " + playerRoll + " and you needed a " + obstacleThreshold);
 
     if(playerRoll === 20){
         currentScore += 2;
@@ -43,19 +41,17 @@ function playerRoll(boardLevels, currentScore, currentPlayer){
         console.log (currentPlayer + ", you have achieved a critical success, you move forward 2 spaces!");
         return currentScore;
     }
-    else if (playerRoll === 1 && currentScore > 0){
+    else if(playerRoll === 1 && currentScore > 0){
         currentScore = currentScore - 1;
         alert(currentPlayer + ", you have critically failed, you move back 1 space.");
         console.log (currentPlayer + ", you have critically failed, you move back 1 space.");
         return currentScore;
     }
-
-    if(playerRoll >= obstacleLimit){
+    else if(playerRoll >= obstacleThreshold){
         currentScore = currentScore + 1;
         alert(currentPlayer + ", you moved forward! Your current level is " + currentScore + ".");
         console.log (currentPlayer + ", you moved forward! Your current level is " + currentScore + ".");
         return currentScore;
-
     }
     else{
         alert(currentPlayer + ", you failed to move forward! Your current level is " + currentScore + ".");
@@ -64,14 +60,14 @@ function playerRoll(boardLevels, currentScore, currentPlayer){
     }
 }
 
-function getObstacleName(obstacle){
-    if (obstacle > 15){
+function getCurrentObstacle(obstacleThreshold){
+    if (obstacleThreshold > 15){
         return "fence";
     }
-    else if (obstacle > 10){
+    else if (obstacleThreshold > 10){
         return "manhole";
     }
-    else if (obstacle > 5){
+    else if (obstacleThreshold > 5){
         return "rock";
     }
     else{
@@ -79,17 +75,17 @@ function getObstacleName(obstacle){
     }
 }
 
-function getObstacleLimit(obstacle){
-    if (obstacle === "fence"){
+function getObstacleThreshold(obstacleName){
+    if (obstacleName === "fence"){
         return 16;
     }
-    else if (obstacle === "manhole"){
+    else if (obstacleName === "manhole"){
         return 12;
     }
-    else if (obstacle === "rock"){
+    else if (obstacleName === "rock"){
         return 8;
     }
-    else if (obstacle === "stump"){
+    else if (obstacleName === "stump"){
         return 4;
     }
 }
@@ -115,6 +111,7 @@ function endGame(player1Score, player2Score,numberOfLevels,players){
         return false;
     }
 }
+
 function main(){
     var player1Score;
     var player2Score;
@@ -149,4 +146,4 @@ function main(){
         player2Score = playerRoll(boardLevels, player2Score, currentPlayer);
     }
 }
-main();
+
