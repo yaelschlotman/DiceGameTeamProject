@@ -68,13 +68,13 @@ function playerRoll(boardLevels, currentScore, currentPlayer){
     if(playerRoll === 20){
         currentScore += 2;
         alert(currentPlayer + ", you have achieved a critical success, you move forward 2 spaces! Your current level is " + currentScore + ".");
-        console.log (currentPlayer + ", you have achieved a critical success, you move forward 2 spaces! Your current level is " + currentScore() + ".");
+        console.log (currentPlayer + ", you have achieved a critical success, you move forward 2 spaces! Your current level is " + currentScore + ".");
         return currentScore;
     }
     else if(playerRoll === 1 && currentScore > 0){
         currentScore = currentScore - 1;
         alert(currentPlayer + ", you have critically failed, you move back 1 space. Your current level is " + currentScore + ".");
-        console.log (currentPlayer + ", you have critically failed, you move back 1 space. Your current level is " + currentScore() + ".");
+        console.log (currentPlayer + ", you have critically failed, you move back 1 space. Your current level is " + currentScore + ".");
         return currentScore;
     }
     else if(playerRoll >= obstacleThreshold){
