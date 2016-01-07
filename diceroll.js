@@ -80,7 +80,13 @@ function getObstacleLimit(obstacle){
 }
 
 function endGame(player1Score, player2Score,numberOfLevels){
-    if (player1Score >= numberOfLevels){
+    if (player1Score >= numberOfLevels && player2Score >= numberOfLevels){
+    	alert("The game has ended in a tie!");
+    	console.log ("The game has ended in a tie!");
+    	return true;
+    }
+
+    else if (player1Score >= numberOfLevels){
         alert("Player 1 won the game");
         console.log ("Player 1 won the game");
         return true;
