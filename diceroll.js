@@ -130,8 +130,8 @@ function main(){
     numberOfLevels = getUserInput("How many levels do you want to play?");
 
     while (isNaN(numberOfLevels)){
-        alert("User input error");
-        numberOfLevels = getUserInput("How many levels do you want to play");
+        alert("User input error.");
+        numberOfLevels = getUserInput("How many levels do you want to play?");
     }
         
     for(obstacle = 0; obstacle < numberOfLevels; obstacle++){
