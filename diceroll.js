@@ -14,12 +14,6 @@ function populatePlayersArray(numberOfPlayers,playerNames){
 	return playerNames;
 }
 
-function rollDice(){
-	var diceOutcome;
-	diceOutcome = Math.floor((Math.random() * 20) + 1);
-    return diceOutcome;
-}
-
 function getCurrentObstacle(obstacleThreshold){
     if (obstacleThreshold > 15){
         return "mountain";
@@ -48,6 +42,12 @@ function getObstacleThreshold(obstacleName){
     else if (obstacleName === "stump"){
         return 4;
     }
+}
+
+function rollDice(){
+    var diceOutcome;
+    diceOutcome = Math.floor((Math.random() * 20) + 1);
+    return diceOutcome;
 }
 
 function playerRoll(boardLevels, currentScore, currentPlayer){
@@ -111,12 +111,20 @@ function endGame(player1Score, player2Score,numberOfLevels,players){
     }
 }
 
+function populateBoardArray(numberOfLevels){
+    var obstacle;
+    var boardLevels = [];
+    for(obstacle = 0; obstacle < numberOfLevels; obstacle++){
+        boardLevels[obstacle] = Math.floor((Math.random() * 20) + 1);
+    }
+    return boardLevels;
+}
+
 function main(){
     var player1Score;
     var player2Score;
     var boardLevels = [];
     var numberOfLevels;
-    var obstacle;	
     var currentPlayer;
     var playerNames = [];
     var numberOfPlayers;
@@ -133,11 +141,9 @@ function main(){
         alert("User input error.");
         numberOfLevels = getUserInput("How many levels do you want to play?");
     }
-        
-    for(obstacle = 0; obstacle < numberOfLevels; obstacle++){
-        boardLevels[obstacle] = Math.floor((Math.random() * 20) + 1);
-    }
 
+    boardLevels = populateBoardArray(numberOfLevels);
+        
     while(!endGame(player1Score, player2Score,numberOfLevels,playerNames)){
 
         currentPlayer = playerNames[0];
